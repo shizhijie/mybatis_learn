@@ -23,7 +23,9 @@ public class MybatisExampleByCode {
 			Role role = mapper.getRole(1);
 			System.out.println(role);
 		} finally {
-			sqlSession.close();
+			if (sqlSession!=null) {
+				sqlSession.close();
+			}
 		}
 	}
 	
