@@ -3,6 +3,7 @@ package com.zjs.bwcx.mybatis.testconfbyjavacode;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
@@ -14,10 +15,16 @@ import com.zjs.bwcx.mybatis.pojo.Role;
 public class MybatisExampleByCode {
 	
 	public static void main(String[] args) {
-		SqlSessionFactory sqlSessionFactory = init();
-		RoleMapper mapper = sqlSessionFactory.openSession().getMapper(RoleMapper.class);
-		Role role = mapper.getRole(1);
-		System.out.println(role);
+		SqlSession sqlSession = null;
+		try {
+			SqlSessionFactory sqlSessionFactory = init();
+			sqlSession = sqlSessionFactory.openSession();
+			RoleMapper mapper = sqlSession.getMapper(RoleMapper.class);
+			Role role = mapper.getRole(1);
+			System.out.println(role);
+		} finally {
+			sqlSession.close();
+		}
 	}
 	
 	public static SqlSessionFactory init() {
