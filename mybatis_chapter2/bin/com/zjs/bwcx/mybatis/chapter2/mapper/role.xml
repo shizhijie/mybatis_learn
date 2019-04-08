@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjs.bwcx.mybatis.chapter2.mapper.RoleMapper">
+	<select id="getRole" parameterType="int" resultType="role1">
+		select * from sys_role where id=#{id}
+	</select>
+	<insert id="insertRole" parameterType="role1">
+		insert into sys_role(num,pid,name,deptid,tips,version) 
+		values(${num},${pid},#{name},${deptid},#{tips},${version}) 
+	</insert>
+	<delete id="deleteRole" parameterType="int">
+		delete from sys_role where id = ${id}
+	</delete>
+</mapper>
