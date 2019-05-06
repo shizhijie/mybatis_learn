@@ -7,6 +7,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias alias="role1" type="com.zjs.bwcx.mybatis.chapter2.po.Role"/>
 	</typeAliases>
+	<plugins>
+		<plugin interceptor="com.zjs.bwcx.mybatis.chapter2.plugins.QueryLimitPlugin">
+			<property name="limit" value="50"/>
+			<property name="dbtype" value="mysql"/>
+		</plugin>
+	</plugins> 
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC">
